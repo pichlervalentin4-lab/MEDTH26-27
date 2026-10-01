@@ -3,9 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Counter mit Vue.js</title>
+    <style>
+        .rot {
+            color: red;
+        }
+    </style>
 </head>
 <body>
-    
+    <div id="app">
+        <p :class="{rot: count >= 10}">Zählerstand: {{count}}</p>
+        <button @click="count++">+1</button>
+        <button @click="count--">-1</button>
+        <p v-if="count % 2 === 0">Gerade</p>
+        <p v-else>Ungerade</p>
+
+    </div>
+
+    <script src="vue.global.js"></script>
+    <script>
+
+        const {createApp, ref} = Vue;
+
+        createApp({
+            setup() {
+                const count = ref(0);
+                return {count};
+            }
+        }).mount('#app');
+    </script>
 </body>
 </html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Namensliste mit Vue.js</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="neuerName" @keyup.enter="hinzufuegen" placeholder="Name">
+        <button @click="hinzufuegen">Hinzufügen</button>
+        <ul>
+            <li v-for="(name, index) in namen" :key=name>
+                {{ name }}
+            </li>
+        </ul>
+    </div>
+
+    <script src="vue.global.js"></script>
+    <script>
+        const {createApp, ref} = Vue;
+
+        createApp({
+            setup(){
+                const neuerName = ref('');
+                const namen = ref(['Simon','David','Weber', 'Brodmann']);
+
+                function hinzufuegen(){
+                    const name = neuerName.value;
+                    namen.value.push(name);
+                }
+                return {
+                    neuerName,
+                    namen,
+                    hinzufuegen
+                }
+            }
+        }).mount('#app');
+    </script>
+    
+</body>
+</html>
