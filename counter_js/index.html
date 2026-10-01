@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter in Vanilla javaScript</title>
+</head>
+<body>
+    <p>Stand: <span id="counter">0</span></p>
+    <P>Gerade/Ungerade:<span id="gerade/ungerade"></span></P>
+    <button type="button" id= "plus">+1</button>
+    <button type="button" id= "minus">-1</button>
+</body>
+
+    <script>
+        let count = 0;
+        const anzeige = document.getElementById("counter");
+        const plusbutton = document.getElementById("plus");
+        const minusbutton = document.getElementById("minus");
+        const geradeungerade = document.getElementById("gerade/ungerade");
+
+        plusbutton.addEventListener("click", function() {
+            count++;
+            anzeige.textContent = count;
+            checkEven();
+            if(count >= 10)
+            {
+                document.getElementById("counter").style.color = "red";
+            }
+        });
+
+        minusbutton.addEventListener("click", function() {
+            count--;
+            anzeige.textContent = count;
+            checkEven();
+            if(count <= -10)
+            {
+                document.getElementById("counter").style.color = "red";
+            }
+        });
+
+        function checkEven()
+        {
+            if(count % 2 === 0)
+            {
+                geradeungerade.textContent = "gerade";
+            }
+            else
+            {
+                geradeungerade.textContent = "ungerade";
+            }
+        }
+
+    </script>
+
+</body>
+</html>
